@@ -1,6 +1,6 @@
 #!/bin/bash
 
-REPO_URL=""
+REPO_URL="https://github.com/vh8t/SuperUtils.git"
 TOOLS=("ccat.py" "sls.py" "sutil.py")
 
 INSTALL_DIR="$HOME/superutils"
