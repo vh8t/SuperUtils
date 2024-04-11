@@ -65,7 +65,7 @@ def setup() -> None:
         with open(profile, 'a') as file:
             file.write("\n# Aliases added by SuperUtils\n")
             for command, alias in selected_commands:
-                file.write(f"alias {command}='{alias}'\n")
+                file.write(f"alias {alias}='{command}'\n")
         
         print(f"Aliases added to {profile}")
 
