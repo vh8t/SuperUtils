@@ -105,3 +105,6 @@ def main() -> None:
         exit(0)
     else:
         print_help()
+
+
+main()
