@@ -3,7 +3,7 @@ from argparse import ArgumentParser
 from os import listdir, path, stat
 from pwd import getpwuid
 from grp import getgrgid
-from datetime import datetime
+fromdatetime import datetime
 import stat as _stat
 
 FILE_MAP = {

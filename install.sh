@@ -24,4 +24,4 @@ done
 
 sudo mandb
 
-echo "SuperUtils installed successfully! Run 'sutil --start' to get started"
+echo "SuperUtils installed successfully! Run 'sutil --setup' to get started"
