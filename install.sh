@@ -45,28 +45,16 @@ done
 
 update_path_in_shell_profile() {
   local shell_profile="$1"
-  echo "Updating PATH in $shell_profile..."
-  echo "export PATH=\"$BIN_DIR:\$PATH\"" >> "$shell_profile"
-  source "$shell_profile"
+  if grep -q "export PATH=\"$BIN_DIR:\$PATH\"" "$shell_profile"; then
+    echo "PATH is already exported in $shell_profile. Skipping."
+  else
+    echo "Updating PATH in $shell_profile..."
+    echo "export PATH=\"$BIN_DIR:\$PATH\"" >> "$shell_profile"
+    source "$shell_profile"
+  fi
 }
 
-shell_profiles=()
-if [ -f "$HOME/.bashrc" ]; then
-  shell_profiles+=("$HOME/.bashrc")
-fi
-if [ -f "$HOME/.bash_profile" ]; then
-  shell_profiles+=("$HOME/.bash_profile")
-fi
-if [ -f "$HOME/.zshrc" ]; then
-  shell_profiles+=("$HOME/.zshrc")
-fi
-
-if [ ${#shell_profiles[@]} -eq 0 ]; then
-  echo "Unable to locate shell profile (.bashrc, .bash_profile, or .zshrc)."
-  echo "Please manually add the following line to your shell configuration file:"
-  echo "export PATH=\"$BIN_DIR:\$PATH\""
-  exit 1
-fi
+shell_profiles=("$HOME/.bashrc" "$HOME/.bash_profile" "$HOME/.zshrc")
 
 for profile in "${shell_profiles[@]}"; do
   if [ -f "$profile" ]; then
