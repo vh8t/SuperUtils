@@ -61,7 +61,7 @@ if [ -f "$HOME/.zshrc" ]; then
   shell_profiles+=("$HOME/.zshrc")
 fi
 
-if [ ${#available_profiles[@]} -eq 0 ]; then
+if [ ${#shell_profiles[@]} -eq 0 ]; then
   echo "Unable to locate shell profile (.bashrc, .bash_profile, or .zshrc)."
   echo "Please manually add the following line to your shell configuration file:"
   echo "export PATH=\"$BIN_DIR:\$PATH\""
