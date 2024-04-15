@@ -52,13 +52,13 @@ update_path_in_shell_profile() {
 
 shell_profiles=()
 if [ -f "$HOME/.bashrc" ]; then
-  available_profiles+=("$HOME/.bashrc")
+  shell_profiles+=("$HOME/.bashrc")
 fi
 if [ -f "$HOME/.bash_profile" ]; then
-  available_profiles+=("$HOME/.bash_profile")
+  shell_profiles+=("$HOME/.bash_profile")
 fi
 if [ -f "$HOME/.zshrc" ]; then
-  available_profiles+=("$HOME/.zshrc")
+  shell_profiles+=("$HOME/.zshrc")
 fi
 
 if [ ${#available_profiles[@]} -eq 0 ]; then
