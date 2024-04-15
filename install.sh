@@ -23,16 +23,8 @@ if [ -z "$(ls -A $INSTALL_DIR)" ]; then
 
   mkdir -p $BIN_DIR
 else
-  read -p "Installation directory '$INSTALL_DIR' is not empty. Do you want to empty it? (y/n): " response
-
-  if [[ "$response" == "y" || "$response" == "Y" ]]; then
-    echo "Emptying installation directory '$INSTALL_DIR'..."
-    rm -rf $INSTALL_DIR/*
-    mkdir -p $BIN_DIR
-  else
-    echo "Installation cancelled."
-    exit 1
-  fi
+  echo "Installation cancelled. To reinstall, remove the ~/superutils/ directory first"
+  exit 1
 fi
 
 echo "Initializing project"
@@ -74,19 +66,12 @@ if [ ${#available_profiles[@]} -eq 0 ]; then
   exit 1
 fi
 
-echo "Multiple shell profiles detected:"
-for ((i = 0; i < ${#available_profiles[@]}; i++)); do
-  echo "$(($i + 1))) ${available_profiles[$i]}"
+for profile in "${shell_profiles[@]}"; do
+  if [ -f "$profile" ]; then
+    update_path_in_shell_profile "$profile"
+  else
+    echo "Warning: Shell profile '$profile' not found. Skipping."
+  fi
 done
-
-read -p "Enter the number corresponding to the shell profile to update PATH (1-${#available_profiles[@]}): " profile_choice
-
-if ! [[ "$profile_choice" =~ ^[1-${#available_profiles[@]}]$ ]]; then
-  echo "Invalid choice. Exiting."
-  exit 1
-fi
-
-selected_profile="${available_profiles[$(($profile_choice - 1))]}"
-update_path_in_shell_profile "$selected_profile"
 
 echo "Installation complete. Tools are now accessible from the command line."
