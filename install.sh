@@ -48,7 +48,7 @@ update_path_in_shell_profile() {
   source "$shell_profile"
 }
 
-available_profiles=()
+shell_profiles=()
 if [ -f "$HOME/.bashrc" ]; then
   available_profiles+=("$HOME/.bashrc")
 fi
