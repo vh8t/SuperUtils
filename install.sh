@@ -50,7 +50,6 @@ update_path_in_shell_profile() {
   else
     echo "Updating PATH in $shell_profile..."
     echo "export PATH=\"$BIN_DIR:\$PATH\"" >> "$shell_profile"
-    source "$shell_profile"
   fi
 }
 
@@ -64,4 +63,4 @@ for profile in "${shell_profiles[@]}"; do
   fi
 done
 
-echo "Installation complete. Tools are now accessible from the command line."
+echo "Installation complete. Tools will be accessible from the command line after terminal is restarted."
