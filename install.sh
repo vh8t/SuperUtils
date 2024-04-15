@@ -27,6 +27,8 @@ else
   exit 1
 fi
 
+cd $INSTALL_DIR
+
 echo "Initializing project"
 go mod init superutils
 
